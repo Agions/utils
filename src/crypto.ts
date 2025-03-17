@@ -74,9 +74,6 @@ export function randomString(length: number): string {
  */
 export function md5(data: string): string {
   if (isBrowser) {
-    const encoder = new TextEncoder();
-    const dataBuffer = encoder.encode(data);
-    
     // 使用SubtleCrypto API（异步，实际使用需要改为Promise）
     // 这里只是示例，浏览器环境可能需要使用第三方库
     return data.split('').reduce((acc, char) => {

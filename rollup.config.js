@@ -20,6 +20,13 @@ export default {
     typescript({
       tsconfig: './tsconfig.json',
       clean: true,
+      check: false,
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: 'dist',
+        }
+      }
     }),
   ],
   external: [],

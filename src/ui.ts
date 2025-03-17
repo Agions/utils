@@ -399,7 +399,7 @@ export function createTheme(baseTheme: Partial<Theme>, overrides: Partial<Theme>
  * @returns 合并后的对象
  */
 function deepMerge<T extends Record<string, any>>(target: T, source: Partial<T>): T {
-  const output = { ...target };
+  const output = { ...target } as T;
   
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach(key => {
@@ -407,7 +407,7 @@ function deepMerge<T extends Record<string, any>>(target: T, source: Partial<T>)
         if (!(key in target)) {
           Object.assign(output, { [key]: source[key] });
         } else {
-          output[key] = deepMerge(target[key], source[key]);
+          output[key as keyof T] = deepMerge(target[key as keyof T], source[key]) as any;
         }
       } else {
         Object.assign(output, { [key]: source[key] });
